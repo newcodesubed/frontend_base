@@ -146,7 +146,7 @@ function getBook(id) {
 //destructuring
 const book = getBook(1);
 
-const {title, author, genres, publicationDate, hasMovieAdaptation} = book;
+const {title, author,pages ,genres, publicationDate, hasMovieAdaptation} = book;
 console.log(title, author, genres);
 
 const [primaryGenre, secondarygenre, ...otherGenres]= genres;
@@ -164,3 +164,7 @@ const updateBook ={
   pages:5000,
 };
 updateBook;
+
+//template literals
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split("-")[0]}`;
+summary;
