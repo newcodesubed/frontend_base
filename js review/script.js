@@ -144,7 +144,7 @@ function getBook(id) {
 }
 
 //destructuring
-const book = getBook(1);
+const book = getBook(2);
 
 const {title, author,pages ,genres, publicationDate, hasMovieAdaptation} = book;
 console.log(title, author, genres);
@@ -161,10 +161,15 @@ const updateBook ={
   //adding new property
   moviePublicationDate: "2002-12-24", 
   //overwriting existing property
-  pages:5000,
+  pages:800,
 };
 updateBook;
 
 //template literals
-const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split("-")[0]}`;
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split("-")[0]
+}, the book has ${hasMovieAdaptation ? "": "not" }been adapted as movie`;
 summary;
+
+const pagesRange = pages > 1000 ? 'over a thousand' : "less than 1000";
+pagesRange;
+console.log(`the book has ${pagesRange} pages`);
