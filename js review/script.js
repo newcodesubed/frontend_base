@@ -144,7 +144,7 @@ function getBook(id) {
 }
 
 //destructuring
-const book = getBook(2);
+const book = getBook(3);
 
 const {title, author,pages ,genres, publicationDate, hasMovieAdaptation} = book;
 console.log(title, author, genres);
@@ -177,3 +177,11 @@ const pagesRange = pages > 1000 ? 'over a thousand' : "less than 1000";
 pagesRange;
 console.log(`the book has ${pagesRange} pages`);
 
+// optional chaining
+function getTotalReviewCount(book){
+  const goodreads = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  librarything;
+  return goodreads + librarything;
+}
+console.log(getTotalReviewCount(book))
