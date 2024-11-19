@@ -144,8 +144,9 @@ function getBook(id) {
 }
 
 //destructuring
-const book = getBook(3);
 
+/*
+const book = getBook();
 const {title, author,pages ,genres, publicationDate, hasMovieAdaptation} = book;
 console.log(title, author, genres);
 
@@ -185,3 +186,21 @@ function getTotalReviewCount(book){
   return goodreads + librarything;
 }
 console.log(getTotalReviewCount(book))
+*/
+//new data from old data
+
+const books = getBooks();
+
+const x = [1,2,3,4,5].map((el) => el * 2);
+console.log(x);
+
+const title = books.map((book) => book.title);
+title;
+//if book =>{} then element in side the bracket will be thought as function so book =>{return{x:2,}} object i screated in this manner
+const essentialData = books.map((book) =>{
+  return {
+    title: book.title,
+    author: book.author,
+  };
+});
+essentialData;
