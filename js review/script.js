@@ -165,11 +165,15 @@ const updateBook ={
 };
 updateBook;
 
+const getYear = str => str.split("-")[0];
+console.log(getYear(publicationDate));
+
 //template literals
-const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split("-")[0]
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${getYear(publicationDate)
 }, the book has ${hasMovieAdaptation ? "": "not" }been adapted as movie`;
 summary;
 
 const pagesRange = pages > 1000 ? 'over a thousand' : "less than 1000";
 pagesRange;
 console.log(`the book has ${pagesRange} pages`);
+
