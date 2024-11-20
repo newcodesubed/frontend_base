@@ -188,7 +188,7 @@ function getTotalReviewCount(book){
 console.log(getTotalReviewCount(book))
 */
 //new data from old data
-
+/*
 const books = getBooks();
 
 function getTotalReviewCount(book){
@@ -258,3 +258,17 @@ booksAfterDelete;
 const booksAfterUpdated = booksAfterDelete.map(book => 
   book.id ==1 ? {...book, pages:1} : book);
 booksAfterUpdated;
+*/
+
+//#####################################
+/*
+  first it takes time to execute the fetch when that data arive 
+  then is used to chang response from json ----> javascript object which also take time and is a promises 
+  then is used to wait and show the result
+*/
+
+fetch("https://jsonplaceholder.typicode.com/todos")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+console.log("subed");
