@@ -222,3 +222,9 @@ const advenyureBooks = books.filter((book)=>
   book.genres.includes("adventure"))
   .map((book)=>book.title);
 advenyureBooks;
+
+//accumulator use for simple stuff but give one answer by reducing them
+
+const pagesAllBooks = books.reduce((acc, book)=> acc + book.pages, 0);
+pagesAllBooks;
+
