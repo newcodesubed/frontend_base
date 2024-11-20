@@ -267,8 +267,18 @@ booksAfterUpdated;
   then is used to wait and show the result
 */
 
-fetch("https://jsonplaceholder.typicode.com/todos")
-  .then(res => res.json())
-  .then(data => console.log(data));
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then(res => res.json())
+//   .then(data => console.log(data));
 
-console.log("subed");
+// console.log("subed");
+
+//Async/wait
+
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+}
+
+getTodos();
