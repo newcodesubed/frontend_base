@@ -191,16 +191,34 @@ console.log(getTotalReviewCount(book))
 
 const books = getBooks();
 
+function getTotalReviewCount(book){
+  const goodreads = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  librarything;
+  return goodreads + librarything;
+}
+
 const x = [1,2,3,4,5].map((el) => el * 2);
 console.log(x);
 
 const title = books.map((book) => book.title);
 title;
 //if book =>{} then element in side the bracket will be thought as function so book =>{return{x:2,}} object i screated in this manner
-const essentialData = books.map((book) =>{
-  return {
+const essentialData = books.map((book) =>( {
     title: book.title,
     author: book.author,
-  };
-});
+    reviews: getTotalReviewCount(book)
+}));
 essentialData;
+
+//filter shows new array when it is true.
+
+const longBooksWithMOvies = books
+  .filter((book)=> book.pages >500)
+  .filter((book) => book.hasMovieAdaptation)
+longBooksWithMOvies
+
+const advenyureBooks = books.filter((book)=>
+  book.genres.includes("adventure"))
+  .map((book)=>book.title);
+advenyureBooks;
