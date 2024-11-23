@@ -69,16 +69,32 @@ function Header(){
         </header>
     ) 
 }
-
+//1)props pass from the component
 function Menu(){
     return(
         <div className="menu">
             <h2>Our Menu</h2>
-            <Pizza />
-            <Pizza />
-            <Pizza />
-            <Pizza />
+            <Pizza name='Pizza Prosciutto' 
+            ingredients='Tomato, mozarella, ham, aragula, and burrata cheese' 
+            photoName='pizzas/Prosciutto.jpg' 
+            price={10} 
+            />
         </div>
+    )
+}
+
+//2) pass to 
+function Pizza(props){
+    return (
+        <div className="pizza">
+            <img src={props.photoName} alt={props.name}/>
+            <div>
+            <h>{props.name}</h>
+            <p>{props.ingredients} </p>
+            <span>{props.price}</span>
+            </div>
+        </div>
+        
     )
 }
 
@@ -98,17 +114,6 @@ function Footer(){
         </footer>
 )}
 
-
-function Pizza(){
-    return (
-        <div>
-            <img src="pizzas/Prosciutto.jpg" alt="Prosciutto"/>
-            <h3>Pizza Prosciutto</h3>
-            <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-        </div>
-        
-    )
-}
 
 const root = ReactDom.createRoot(document.getElementById("root"));
 root.render(
