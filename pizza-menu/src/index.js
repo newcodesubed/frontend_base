@@ -71,15 +71,20 @@ function Header(){
 }
 //1)props pass from the component
 function Menu(){
+const pizzas = pizzaData;
+
+const numPizzas = pizzas.length
+
     return(
         <div className="menu">
             <h2>Our Menu</h2>
-
-            <ul className="pizzas">
-                {pizzaData.map((pizza)=>(
-                    <Pizza pizzaObj={pizza} key={pizza.name} />
-                ))}
-            </ul>
+            {numPizzas > 0 && (
+                <ul className="pizzas">
+                    {pizzaData.map((pizza)=>(
+                        <Pizza pizzaObj={pizza} key={pizza.name} />
+                    ))}
+                </ul>
+            )}
 
             {/* <Pizza name='Pizza Prosciutto' 
             ingredients='Tomato, mozarella, ham, aragula, and burrata cheese' 
@@ -118,8 +123,15 @@ function Footer(){
 
     return (
     <footer className="footer">
-        {new Date().toLocaleTimeString()}.We,re currently open
-        </footer>
+        {isOpen &&(
+            <div className="order" >
+            <p>
+                We're open until {closeHour}:00. Come visit us or order online.
+            </p>
+            <button className="btn">Order Now</button>
+            </div>
+        )}
+    </footer>
 )}
 
 
