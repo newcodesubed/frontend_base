@@ -78,13 +78,13 @@ const numPizzas = pizzas.length
     return(
         <div className="menu">
             <h2>Our Menu</h2>
-            {numPizzas > 0 && (
+            {numPizzas > 0 ? (
                 <ul className="pizzas">
                     {pizzaData.map((pizza)=>(
                         <Pizza pizzaObj={pizza} key={pizza.name} />
                     ))}
                 </ul>
-            )}
+            ) : <p>We're still working on our menu. please come back later:0</p>}
 
             {/* <Pizza name='Pizza Prosciutto' 
             ingredients='Tomato, mozarella, ham, aragula, and burrata cheese' 
@@ -102,7 +102,7 @@ function Pizza(props){
         <li className="pizza">
             <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}/>
             <div>
-            <h>{props.pizzaObj.name}</h>
+            <h1>{props.pizzaObj.name}</h1>
             <p>{props.pizzaObj.ingredients} </p>
             <span>{props.pizzaObj.price}</span>
             </div>
@@ -123,13 +123,17 @@ function Footer(){
 
     return (
     <footer className="footer">
-        {isOpen &&(
+        {isOpen ? (
             <div className="order" >
             <p>
                 We're open until {closeHour}:00. Come visit us or order online.
             </p>
             <button className="btn">Order Now</button>
             </div>
+        ): (
+            <p>
+                we"re happy to welcome you between {openHour}:00 and {closeHour}:00.
+            </p>
         )}
     </footer>
 )}
