@@ -106,15 +106,16 @@ function Pizza({pizzaObj}){
 
     console.log({pizzaObj});
 
-    if(pizzaObj.soldOut) return null;
-
+    // if(pizzaObj.soldOut) return null;
+//In pure JavaScript, you don't need {} because you're always in JavaScript code.
+//But in JSX, you must explicitly tell it to evaluate JavaScript expressions using {}.
     return (
-        <li className="pizza">
+        <li className={`pizza ${pizzaObj.soldOut ? 'sold-out' : ''}`}>
             <img src={pizzaObj.photoName} alt={pizzaObj.name}/>
             <div>
             <h1>{pizzaObj.name}</h1>
             <p>{pizzaObj.ingredients} </p>
-            <span>{pizzaObj.price}</span>
+            <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
             </div>
         </li>
         
