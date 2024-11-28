@@ -79,13 +79,18 @@ const numPizzas = pizzas.length
         <div className="menu">
             <h2>Our Menu</h2>
             {numPizzas > 0 ? (
-                <ul className="pizzas">
-                    {pizzaData.map((pizza)=>(
-                        <Pizza pizzaObj={pizza} key={pizza.name} />
-                    ))}
-                </ul>
-            ) : <p>We're still working on our menu. please come back later:0</p>}
-
+                <>
+                    <p>
+                        Pizza is what we make. Delight is what we do
+                    </p>
+                    <ul className="pizzas">
+                        {pizzaData.map((pizza)=>(
+                            <Pizza pizzaObj={pizza} key={pizza.name} />
+                        ))}
+                    </ul>
+                </>
+                ) : <p>We're still working on our menu. please come back later:0</p>}
+            
             {/* <Pizza name='Pizza Prosciutto' 
             ingredients='Tomato, mozarella, ham, aragula, and burrata cheese' 
             photoName='pizzas/Prosciutto.jpg' 
