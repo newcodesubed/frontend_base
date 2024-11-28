@@ -98,6 +98,11 @@ const numPizzas = pizzas.length
 
 //2) pass to 
 function Pizza(props){
+
+    console.log(props);
+
+    if(props.pizzaObj.soldOut) return null;
+
     return (
         <li className="pizza">
             <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name}/>
@@ -120,6 +125,12 @@ function Footer(){
     
     // if(hour <= openHour && hour >= closeHour)alert("We are closed!");
     // else alert("We are open")
+    // if (!isOpen)
+    //         return (
+    //         <p>
+    //             we"re happy to welcome you between {openHour}:00 and {closeHour}:00.
+    //         </p>
+    //     );
 
     return (
     <footer className="footer">
