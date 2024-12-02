@@ -10,21 +10,27 @@ export default function App() {
 
 function Counter() {
   const [count, setCount] = useState(0);
+  const [step, setStep] = useState(0);
   var d = new Date();
   d.setDate(d.getDate() + count);
 
   function addHandler() {
-    setCount(count + 1);
+    setCount(count + step);
   }
 
   function subHandler() {
-    setCount(count - 1);
+    setCount(count - step);
   }
   return (
     <>
       <div>
+        <button onClick={() => setStep((s) => s - 1)}>-</button>
+        <span>Step : {step}</span>
+        <button onClick={() => setStep((s) => s + 1)}>+</button>
+      </div>
+      <div>
         <button onClick={subHandler}>- </button>
-        Counter : {count}
+        <span>Counter : {count}</span>
         <button onClick={addHandler}>+</button>
       </div>
       <p>
