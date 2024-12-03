@@ -26,8 +26,13 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // conditional rendering included. also it fix the bug if description not included in it then it doesnot return anything
+    if (!description) return;
     const newItem = { description, quantity, packed: false, id: Date.now() };
     console.log(newItem);
+    //return the state to its origim
+    setDescription("");
+    setQuantity(1);
   }
 
   return (
