@@ -130,3 +130,6 @@ input[type="checkbox"] {
   font-weight: 700;
   padding: 3.2rem 0;
 }
+.btn {
+  color: #ec1008;
+}
