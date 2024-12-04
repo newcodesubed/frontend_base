@@ -11,9 +11,14 @@ export default function App() {
 function Counter() {
   const [count, setCount] = useState(0);
   const [step, setStep] = useState(1);
-  const [isRunning, setIsRunning] = useState(false);
+  // const [isRunning, setIsRunning] = useState(false);
   var d = new Date();
   d.setDate(d.getDate() + count);
+
+  function handleReset() {
+    setCount(0);
+    setStep(1);
+  }
 
   return (
     <>
@@ -34,6 +39,7 @@ function Counter() {
         <input
           type="text"
           value={count}
+          // Number na lekheko bel astring hunxa yo tesaile cahi Number function lagyaerw string lai number banera denote gareko
           onChange={(e) => setCount(Number(e.target.value))}
         />
         <button onClick={() => setCount((c) => c + step)}>+</button>
@@ -48,7 +54,11 @@ function Counter() {
         </span>
         <span>{d.toDateString()}</span>
       </p>
-      {/* <button value={isRunning} onClick={setCount(count=0)}>Reset</button> */}
+      {count !== 0 || step !== 1 ? (
+        <div>
+          <button onClick={handleReset}>Reset</button>
+        </div>
+      ) : null}
     </>
   );
 }
