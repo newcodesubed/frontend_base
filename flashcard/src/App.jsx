@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./styles.css";
 
 export default function App() {
@@ -43,5 +44,27 @@ const questions = [
 ];
 
 function FlashCards() {
-  return <div>TODO</div>;
+  const [selectedId, setselectedId] = useState(9103);
+  // handleClick le kun cahi click garxa banera id bat amatra tha hunxa so id lai nai pass garxa tesko lagi id aaunu paryo click garda.
+  function handleClick(id) {
+    setselectedId(id !== selectedId ? id : null);
+  }
+
+  return (
+    <div className="flashcards">
+      {/* question is being maped rightnow */}
+      {questions.map((question) => (
+        <div
+          key={question.id}
+          // kina cahi function ma rakheko banda click baye paxi matra execute hoss banerw else bako bai garxa
+          onClick={() => handleClick(question.id)}
+          className={question.id === selectedId ? "selected" : ""}
+        >
+          <p>
+            {question.id === selectedId ? question.answer : question.question}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
 }
