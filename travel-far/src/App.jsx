@@ -3,13 +3,19 @@ import { useState } from "react";
 export default function App() {
   const [items, setIteams] = useState([]);
 
+  //items means all the item so adding item in last
+
   function handleAddItems(item) {
     setIteams((items) => [...items, item]);
   }
 
+  //first looking from the left when an item in items is clicked the that is filtered and setItems is updated
+
   function handleDeleteItem(id) {
     setIteams((items) => items.filter((item) => item.id !== id));
   }
+
+  //same when an item is clicked then item is updated then item is manupulated as ...item != ...items
 
   function handleToggleItem(id) {
     setIteams((items) =>
@@ -27,7 +33,7 @@ export default function App() {
         onDeleteItem={handleDeleteItem}
         onToggleItems={handleToggleItem}
       />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }
@@ -116,10 +122,24 @@ function Item({ item, onDeleteItem, onToggleItems }) {
   );
 }
 
-function Stats() {
+function Stats({ items }) {
+  if (!items.length)
+    return (
+      <p className="stats">
+        <em>Start adding some item to your packing list🛒</em>
+      </p>
+    );
+  const numitems = items.length;
+  const numPacked = items.filter((item) => item.packed).length;
+  const percentage = Math.round((numPacked / numitems) * 100);
   return (
     <footer className="stats">
-      You have X items on your list, and you already packed X (X%)
+      <em>
+        {percentage === 100
+          ? "you got everthing! Ready to go ✈️"
+          : `You have ${numitems} items on your list, and you already packed
+        ${numPacked} (${percentage})`}
+      </em>
     </footer>
   );
 }
