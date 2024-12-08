@@ -6,11 +6,17 @@ const initialItems = [
 ];
 
 export default function App() {
+  const [items, setIteams] = useState([]);
+
+  function handleAddItems(item) {
+    setIteams((items) => [...items, item]);
+  }
+
   return (
     <div className="app">
       <Logo />
-      <Form />
-      <PackingList />
+      <Form onAddItems={handleAddItems} />
+      <PackingList items={items} />
       <Stats />
     </div>
   );
@@ -20,16 +26,20 @@ function Logo() {
   return <h1> ✅GHUMGHAM✨ </h1>;
 }
 
-function Form() {
+function Form({ onAddItems }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
 
   function handleSubmit(e) {
     e.preventDefault();
     // conditional rendering included. also it fix the bug if description not included in it then it doesnot return anything
+
     if (!description) return;
     const newItem = { description, quantity, packed: false, id: Date.now() };
     console.log(newItem);
+
+    onAddItems(newItem);
+
     //return the state to its origim
     setDescription("");
     setQuantity(1);
@@ -61,11 +71,11 @@ function Form() {
   );
 }
 
-function PackingList() {
+function PackingList({ items }) {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((item) => (
+        {items.map((item) => (
           <Item item={item} key={item.id} />
         ))}
       </ul>
