@@ -1,18 +1,11 @@
-function Service({ service, setService }) {
+function Service({ service, setService, children }) {
   //   const [service, setService] = useState(0);
   //   function handleSubmit(e) {
   //     e.preventDefault();
   //   }
   return (
     <div>
-      <h3>How much did you like the service?</h3>
-      {/* <form onSubnmit={handleSubmit}> */}
-      {/* <input
-        type="text"
-        value={service}
-        onChange={(e) => setService(e.target.value)}
-      /> */}
-      {/* </form> */}
+      {children}
       <select
         onChange={(e) => setService(Number(e.target.value))}
         value={service}
