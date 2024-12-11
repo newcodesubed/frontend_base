@@ -1,7 +1,4 @@
-import { useState } from "react";
-
-function Bill() {
-  const [cost, setCost] = useState(0);
+function Bill({ cost, setCost }) {
   //   function handleSubmit(e) {
   //     e.preventDefault();
   //   }
@@ -12,7 +9,7 @@ function Bill() {
       <input
         type="text"
         value={cost}
-        onChange={(e) => setCost(e.target.value)}
+        onChange={(e) => setCost(Number(e.target.value))}
       />
       {/* </form> */}
     </div>

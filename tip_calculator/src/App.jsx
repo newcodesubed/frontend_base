@@ -1,11 +1,9 @@
-import Bill from "./components/Bill";
-import Service from "./components/Service";
+import Total from "./components/Total";
 
 export default function App() {
   return (
     <div>
-      <Bill />
-      <Service />
+      <Total />
     </div>
   );
 }
