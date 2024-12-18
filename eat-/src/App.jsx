@@ -40,7 +40,9 @@ export default function App() {
     setshowAddFriends(false);
   }
   function handleSelection(friend) {
-    setSelectedfriend(friend);
+    // setSelectedfriend(friend);
+    setSelectedfriend((cur) => (cur?.id === friend.id ? null : friend));
+    setshowAddFriends(false);
   }
 
   return (
@@ -80,7 +82,7 @@ function FriendsList({ friends, onSelection, selectedFriend }) {
 }
 
 function Friend({ friend, onSelection, selectedFriend }) {
-  const isSelected = selectedFriend.id === friend.id;
+  const isSelected = selectedFriend?.id === friend.id;
   return (
     <li>
       <img src={friend.image} alt={friend.name} />
