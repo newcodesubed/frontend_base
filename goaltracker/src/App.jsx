@@ -22,11 +22,13 @@ const Goals = [
 ];
 
 export default function App() {
-  const [goals, setGoals] = useState("");
   const [lists, setLists] = useState(Goals);
+  function handleAddGoals(list) {
+    setLists((lists) => [...lists, list]);
+  }
   return (
     <>
-      <Adder goals={goals} setGoals={setGoals}>
+      <Adder onAddGoals={handleAddGoals}>
         <span>+</span>
       </Adder>
       <List lists={lists} />

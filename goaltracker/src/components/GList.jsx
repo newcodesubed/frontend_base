@@ -1,10 +1,8 @@
 function Glist({ list }) {
   return (
-    <ul>
-      <p>
-        {list.id}.{list.goal}
-      </p>
-    </ul>
+    <li>
+      <p>{list.goal}</p>
+    </li>
   );
 }
 export default Glist;
