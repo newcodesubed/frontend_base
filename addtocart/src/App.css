@@ -80,3 +80,85 @@
   background-color: #787671; /* Even darker shade when active */
   transform: scale(0.98); /* Slight shrink effect on click */
 }
+
+/* Container for the table */
+.order-table-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table heading */
+.table-heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* Table styles */
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 8px;
+  text-align: left;
+}
+
+/* Header row styling */
+.order-table thead th {
+  padding: 12px;
+  background-color: #d8ab16; /* Golden tone for an elegant look */
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Data row styling */
+.order-table tbody tr {
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+.order-table tbody tr:hover {
+  background-color: #f4f4f4;
+}
+
+/* Cell styles */
+.order-table td {
+  padding: 16px;
+  font-size: 0.95rem;
+  color: #555;
+  text-align: center;
+}
+
+.order-table td img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .order-table-container {
+    padding: 10px;
+  }
+
+  .table-heading {
+    font-size: 1.5rem;
+  }
+
+  .order-table td,
+  .order-table thead th {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+}

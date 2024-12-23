@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import Product from "./components/Product";
 import "./App.css";
 import ProductList from "./components/ProductList";
+import Cart from "./components/Cart";
 const Saman = [
   {
     id: 1,
@@ -27,6 +28,13 @@ const Saman = [
 ];
 
 export default function App() {
-  const [products, setProducts] = useState(Saman);
-  return <ProductList products={products} />;
+  const products = Saman;
+  const [selectedSaman, setSelectedSaman] = useState();
+
+  return (
+    <>
+      <ProductList products={products} />;
+      <Cart products={products} />
+    </>
+  );
 }
