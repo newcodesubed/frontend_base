@@ -1,4 +1,12 @@
+.product-list {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping if items exceed the container's width */
+  justify-content: flex-start; /* Align items to the left */
+  gap: 16px; /* Adds space between products */
+}
 .product-card {
+  flex: 0 0 calc(25% - 16px); /* Adjust width: 25% for 4 items per row, minus the gap */
+  box-sizing: border-box; /* Includes padding/border in width */
   width: 200px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -11,6 +19,7 @@
 .product-image {
   width: 100%;
   border-radius: 8px;
+  margin-bottom: 16px;
 }
 
 .product-name {
@@ -49,4 +58,25 @@
 .quantity {
   margin: 0 12px;
   font-size: 1rem;
+}
+.cart-btn {
+  background-color: #161515cb; /* Button background color */
+  color: #fff; /* Text color for better contrast */
+  font-size: 1rem; /* Increase the font size */
+  padding: 12px 0; /* Add vertical padding for a larger button */
+  width: 100%; /* Make the button match the width of the image/container */
+  border: none; /* Remove default button border */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  cursor: pointer; /* Pointer cursor to indicate interactivity */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover and click effects */
+}
+
+.cart-btn:hover {
+  background-color: #818181; /* Slightly darker shade on hover */
+  transform: scale(1.02); /* Slight zoom effect */
+}
+
+.cart-btn:active {
+  background-color: #787671; /* Even darker shade when active */
+  transform: scale(0.98); /* Slight shrink effect on click */
 }
