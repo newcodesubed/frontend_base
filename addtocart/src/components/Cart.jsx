@@ -1,4 +1,4 @@
-function Cart({ products }) {
+function Cart({ selectedSaman, onSelect }) {
   return (
     <div className="order-table-container">
       <h2 className="table-heading">Order Details</h2>
@@ -12,7 +12,7 @@ function Cart({ products }) {
           </tr>
         </thead>
         <tbody>
-          {products.map((order, index) => (
+          {selectedSaman?.map((order, index) => (
             <tr key={order.id}>
               <td>{index + 1}</td>
               <td>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
+import Product from "./components/Product";
 const Saman = [
   {
     id: 1,
@@ -19,22 +20,41 @@ const Saman = [
     price: 60,
   },
   {
-    id: 2,
+    id: 3,
     name: "에어 조던 1 미드",
     image:
       "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/30eab918-d51f-473a-8012-46bf4d99000c/AIR+JORDAN+1+MID.png",
     price: 80,
+  },
+  {
+    id: 4,
+    name: "LeBron XXII Currency",
+    image:
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b88072c8-4993-453b-b2a1-3db52f376bb9/LEBRON+XXII+QS.png",
+    price: 200,
   },
 ];
 
 export default function App() {
   const products = Saman;
   const [selectedSaman, setSelectedSaman] = useState();
+  function handleSelection(Product) {
+    setSelectedSaman(Product);
+  }
 
   return (
     <>
-      <ProductList products={products} />;
-      <Cart products={products} />
+      <ProductList
+        products={products}
+        onSelection={handleSelection}
+        selectedSaman={selectedSaman}
+      />
+      ;
+      <Cart
+        products={products}
+        selectedSaman={selectedSaman}
+        onSelection={handleSelection}
+      />
     </>
   );
 }
