@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Product({ product, onSelection, selectedSaman }) {
+function Product({ product, onSelection }) {
   // const [quantity, setQuantity] = useState(0);
   return (
     <div className="product-card">

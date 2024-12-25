@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
-import Product from "./components/Product";
+
 const Saman = [
   {
     id: 1,
@@ -34,27 +34,17 @@ const Saman = [
     price: 200,
   },
 ];
-
 export default function App() {
-  const products = Saman;
-  const [selectedSaman, setSelectedSaman] = useState();
-  function handleSelection(Product) {
-    setSelectedSaman(Product);
+  const [selectedSaman, setSelectedSaman] = useState([]);
+
+  function handleSelection(product) {
+    setSelectedSaman([...selectedSaman, product]);
   }
 
   return (
     <>
-      <ProductList
-        products={products}
-        onSelection={handleSelection}
-        selectedSaman={selectedSaman}
-      />
-      ;
-      <Cart
-        products={products}
-        selectedSaman={selectedSaman}
-        onSelection={handleSelection}
-      />
+      <ProductList products={Saman} onSelection={handleSelection} />
+      <Cart selectedSaman={selectedSaman} />
     </>
   );
 }
