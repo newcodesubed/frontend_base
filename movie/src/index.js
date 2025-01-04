@@ -7,7 +7,11 @@ import StatrRating from "./StartRating";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <StatrRating maxRating={5} />
+    <StatrRating
+      maxRating={5}
+      message={["Terrible", "Bad", "okay", "Good", "Amazing"]}
+    />
+    <StatrRating size={24} color="red" defaultRating={3} />
 
     {/* <App /> */}
   </React.StrictMode>
