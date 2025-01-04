@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 const containerStyle = {
   display: "flex",
   alignItems: "center",
@@ -8,7 +9,7 @@ const starContainerStyle = {
   display: "flex",
 };
 
-export default function StatrRating({
+export default function StarRating({
   maxRating = 5,
   color = "#fcc419",
   size = 48,
