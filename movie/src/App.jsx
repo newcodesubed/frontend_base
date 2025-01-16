@@ -54,44 +54,55 @@ const KEY = "75a5cbe2";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
+  const [query, setQuery] = useState("");
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const query = "intsadfsdlar";
+  // const temQuery = "interstellar";
 
   //use of useEffect is to execute thw side effect to execute only after the component is render
 
-  useEffect(function () {
-    async function fetchMovie() {
-      try {
-        setIsLoading(true);
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-        );
+  useEffect(
+    function () {
+      async function fetchMovie() {
+        try {
+          setIsLoading(true);
+          setError("");
+          const res = await fetch(
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+          );
 
-        if (!res.ok)
-          throw new Error("Something went wrong. check your connection ");
+          if (!res.ok)
+            throw new Error("Something went wrong. check your connection ");
 
-        const data = await res.json();
+          const data = await res.json();
 
-        if (data.Response === "False") throw new Error("movie not found!");
+          if (data.Response === "False") throw new Error("movie not found!");
 
-        setMovies(data.Search);
-        console.log(data);
-      } catch (err) {
-        console.error(err.message);
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
+          setMovies(data.Search);
+        } catch (err) {
+          console.error(err.message);
+          setError(err.message);
+        } finally {
+          setIsLoading(false);
+        }
       }
-    }
-    fetchMovie();
-  }, []);
+
+      if (query.length < 3) {
+        setMovies([]);
+        setError("");
+        return;
+      }
+
+      fetchMovie();
+    },
+    [query]
+  );
 
   return (
     <>
       <NavBar>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <Numresults movies={movies} />
       </NavBar>
       <Main>
@@ -151,8 +162,7 @@ function Logo() {
     </div>
   );
 }
-function Search() {
-  const [query, setQuery] = useState("");
+function Search({ query, setQuery }) {
   return (
     <input
       className="search"
