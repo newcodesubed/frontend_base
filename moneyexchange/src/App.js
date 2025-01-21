@@ -5,6 +5,7 @@ export default function App() {
   const [fromAmount, setFromAmount] = useState("USD");
   const [toAmount, setToAmount] = useState("USD");
   const [outputAmount, setOutputAmount] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState("");
 
   useEffect(
@@ -15,19 +16,23 @@ export default function App() {
           return;
         }
         try {
+          setIsLoading(true);
           const response = await fetch(
-            `https://api.frankfurter.app/latest?amount=1&from=${fromAmount}&to=${toAmount}`
+            `https://api.frankfurter.app/latest?amount=${amount}&from=${fromAmount}&to=${toAmount}`
           );
           if (!response.ok)
             throw new Error("Something went wrong with fetching Rate");
 
           const data = await response.json();
-          const rate = data.rates[toAmount];
-          if (!rate) throw new Error("Rate not found for selected currency");
 
-          const convertedAmount = (amount * rate)?.toFixed(2);
+          const convertedAmount = data.rates[toAmount];
+
+          if (!convertedAmount)
+            throw new Error("Rate not found for selected currency");
+
           console.log(convertedAmount);
           setOutputAmount(convertedAmount);
+          setIsLoading(false);
         } catch (err) {
           console.log(err.message);
         }
@@ -42,20 +47,26 @@ export default function App() {
         type="text"
         value={amount}
         onChange={(e) => setAmount(e.target.value ? Number(e.target.value) : 0)}
+        disabled={isLoading}
       />
-      <select onChange={(e) => setFromAmount(e.target.value)}>
+      <select
+        value={fromAmount}
+        onChange={(e) => setFromAmount(e.target.value)}
+      >
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
         <option value="CAD">CAD</option>
         <option value="INR">INR</option>
       </select>
-      <select onChange={(e) => setToAmount(e.target.value)}>
+      <select value={toAmount} onChange={(e) => setToAmount(e.target.value)}>
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
         <option value="CAD">CAD</option>
         <option value="INR">INR</option>
       </select>
-      <p>{outputAmount} </p>
+      <p>
+        {outputAmount} {toAmount}{" "}
+      </p>
     </div>
   );
 }
