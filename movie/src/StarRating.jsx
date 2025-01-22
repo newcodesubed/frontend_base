@@ -15,13 +15,13 @@ export default function StarRating({
   size = 48,
   message = [],
   defaultRating = 0,
-  onSetMovieRating,
+  onSetRating,
 }) {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTemRating] = useState(0);
   function handleRating(rating) {
     setRating(rating);
-    onSetMovieRating(rating);
+    onSetRating(rating);
   }
   const textStyle = {
     lineHeight: "1",
