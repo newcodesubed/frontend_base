@@ -175,7 +175,7 @@ function Search({ query, setQuery }) {
         }
       }
       document.addEventListener("keydown", callback);
-      return () => document.addEventListener("keydown", callback);
+      return () => document.removeEventListener("keydown", callback);
     },
     [setQuery]
   );
@@ -271,6 +271,15 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
+  //it is like a container which hold value and can be mutated in useEffect
+  const countRef = useRef(0);
+  useEffect(
+    function () {
+      //while mount it should not mutate the countRef so ref is used.
+      if (userRating) countRef.current += 1;
+    },
+    [userRating]
+  );
 
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
   const watchedUserRating = watched.find(
@@ -299,6 +308,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ").at(0)),
       userRating,
+      countRatingDecisions: countRef.current,
     };
 
     onAddWatched(newWatchedMovie);
