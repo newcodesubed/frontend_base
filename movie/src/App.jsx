@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 import { useMovies } from "./useMovies";
+import { useLocalStorageState } from "./useLocalStorageState";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -11,14 +12,11 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   // having the bellow code is equal to all the code before which destructure the object
+  //1st custom hook
   const { movies, isLoading, error } = useMovies(query);
 
-  // const [watched, setWatched] = useState([]);
-
-  const [watched, setWatched] = useState(function () {
-    const storeValue = localStorage.getItem("watched");
-    return JSON.parse(storeValue);
-  });
+  //2nd custom hook
+  const [watched, setWatched] = useLocalStorageState([], "watched");
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -37,13 +35,6 @@ export default function App() {
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
-  //im using this as th e key value pair so when i keeo "watched"=> of what is it storing we are  seting the value by setItem in local
-  useEffect(
-    function () {
-      localStorage.setItem("watched", JSON.stringify(watched));
-    },
-    [watched]
-  );
 
   return (
     <>
