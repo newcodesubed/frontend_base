@@ -1,4 +1,4 @@
-function FinshedScreen({ points, maxPossiblePoint, hightscore }) {
+function FinshedScreen({ points, maxPossiblePoint, hightscore, dispatch }) {
   const percentage = (points / maxPossiblePoint) * 100;
   let emoji;
   if (percentage >= 90) emoji = "🥇";
@@ -12,6 +12,12 @@ function FinshedScreen({ points, maxPossiblePoint, hightscore }) {
         {maxPossiblePoint}({Math.ceil(percentage)}%)
       </p>
       <p className="highscore">(hightscore: {hightscore} points)</p>
+      <button
+        className="btn btn-ui"
+        onClick={() => dispatch({ type: "restart" })}
+      >
+        Restart Quiz
+      </button>
     </>
   );
 }
