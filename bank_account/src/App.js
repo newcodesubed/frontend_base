@@ -28,6 +28,8 @@ function reducer(state, action) {
   switch (action.type) {
     case "openAccount":
       return { ...state, balance: 500, isActive: true };
+    case "deposit":
+      return { ...state, balance: state.balance + action.payload };
     default:
       throw new Error("something is wrong");
   }
@@ -53,12 +55,15 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={isActive ? false : true}>
+        <button
+          onClick={() => dispatch({ type: "deposit", payload: 150 })}
+          disabled={isActive ? false : true}
+        >
           Deposit 150
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={isActive ? false : true}>
+        <button onClick={() => withdraw} disabled={isActive ? false : true}>
           Withdraw 50
         </button>
       </p>
