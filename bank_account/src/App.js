@@ -47,13 +47,15 @@ function reducer(state, action) {
         loan: 0,
       };
     case "closeAccount":
-      const canCloseAccount = state.loan === 0 && state.balance === 0;
-      return {
-        ...state,
-        balance: canCloseAccount ? initialState.balance : state.balance,
-        loan: canCloseAccount ? initialState.loan : state.loan,
-        isActive: canCloseAccount ? false : state.isActive,
-      };
+      if (state.loan > 0 || state.balance !== 0) return state;
+      return initialState;
+    // const canCloseAccount = state.loan === 0 && state.balance === 0;
+    // return {
+    //   ...state,
+    //   balance: canCloseAccount ? initialState.balance : state.balance,
+    //   loan: canCloseAccount ? initialState.loan : state.loan,
+    //   isActive: canCloseAccount ? false : state.isActive,
+    // };
 
     default:
       throw new Error("something is wrong");
