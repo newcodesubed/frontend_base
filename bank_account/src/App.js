@@ -45,6 +45,14 @@ function reducer(state, action) {
         balance: state.balance - action.payload,
         loan: 0,
       };
+    case "closeAccount":
+      const canCloseAccount = state.loan === 0 && state.balance === 0;
+      return {
+        ...state,
+        balance: canCloseAccount ? initialState.balance : state.balance,
+        loan: canCloseAccount ? initialState.loan : state.loan,
+        isActive: canCloseAccount ? false : state.isActive,
+      };
 
     default:
       throw new Error("something is wrong");
@@ -104,7 +112,10 @@ export default function App() {
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={isActive ? false : true}>
+        <button
+          onClick={() => dispatch({ type: "closeAccount" })}
+          disabled={isActive ? false : true}
+        >
           Close account
         </button>
       </p>
