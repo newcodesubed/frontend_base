@@ -39,6 +39,12 @@ function reducer(state, action) {
         balance: canTakeLoan ? state.balance + action.payload : state.balance,
         loan: canTakeLoan ? action.payload : state.loan,
       };
+    case "payLoan":
+      return {
+        ...state,
+        balance: state.balance - action.payload,
+        loan: 0,
+      };
 
     default:
       throw new Error("something is wrong");
@@ -50,6 +56,7 @@ export default function App() {
     reducer,
     initialState
   );
+  const loanAmount = 5000;
   return (
     <div className="App">
       <h1>useReducer Bank Account</h1>
@@ -82,14 +89,17 @@ export default function App() {
       </p>
       <p>
         <button
-          onClick={() => dispatch({ type: "requestLoan", payload: 5000 })}
+          onClick={() => dispatch({ type: "requestLoan", payload: loanAmount })}
           disabled={isActive ? false : true}
         >
           Request a loan of 5000
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={isActive ? false : true}>
+        <button
+          onClick={() => dispatch({ type: "payLoan", payload: loanAmount })}
+          disabled={isActive ? false : true}
+        >
           Pay loan
         </button>
       </p>
