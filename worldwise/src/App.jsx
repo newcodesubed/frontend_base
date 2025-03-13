@@ -26,9 +26,15 @@ function App() {
             {/* default index feature */}
             <Route index element={<Navigate replace to="cities" />} />
             {/* can access with urls */}
+
+            {/* useCities context is used in them so passing it as global variable */}
             <Route path="cities" element={<CityList />} />
+
             <Route path="cities/:id" element={<City />} />
+
+            {/* useCities context is used in them so passing it as global variable */}
             <Route path="country" element={<CountryList />} />
+
             <Route path="form" element={<Form />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
