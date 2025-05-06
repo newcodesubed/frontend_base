@@ -10,7 +10,7 @@
         "lat": 38.727881642324164,
         "lng": -9.140900099907554
       },
-      "id": 73930385
+      "id": "73930385"
     },
     {
       "cityName": "Madrid",
@@ -22,7 +22,7 @@
         "lat": 40.46635901755316,
         "lng": -3.7133789062500004
       },
-      "id": 17806751
+      "id": "17806751"
     },
     {
       "cityName": "Berlin",
@@ -34,7 +34,67 @@
         "lat": 52.53586782505711,
         "lng": 13.376933665713324
       },
-      "id": 98443197
+      "id": "98443197"
+    },
+    {
+      "id": "21c2",
+      "cityName": "Saint-Germier",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-05-06T16:36:19.480Z",
+      "notes": "",
+      "position": {
+        "lat": "43.67581809328341",
+        "lng": "2.2412109375000004"
+      }
+    },
+    {
+      "id": "43d2",
+      "cityName": "Saint-Maurice",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-05-06T16:39:18.131Z",
+      "notes": "",
+      "position": {
+        "lat": "48.82089217007058",
+        "lng": "2.4243241711254364"
+      }
+    },
+    {
+      "id": "41d6",
+      "cityName": "Akabli",
+      "country": "Algeria",
+      "emoji": "🇩🇿",
+      "date": "2025-05-06T16:41:13.616Z",
+      "notes": "okay",
+      "position": {
+        "lat": "26.636915798124384",
+        "lng": "1.2546252774648672"
+      }
+    },
+    {
+      "id": "2b31",
+      "cityName": "Bassa",
+      "country": "Nigeria",
+      "emoji": "🇳🇬",
+      "date": "2025-05-06T16:46:24.698Z",
+      "notes": "why not",
+      "position": {
+        "lat": "10.11320993137161",
+        "lng": "8.905023149681957"
+      }
+    },
+    {
+      "id": "4606",
+      "cityName": "Songololo",
+      "country": "Congo (the Democratic Republic of the)",
+      "emoji": "🇨🇩",
+      "date": "2025-05-06T16:47:26.480Z",
+      "notes": "yes inm ",
+      "position": {
+        "lat": "-5.294232423559892",
+        "lng": "14.352494802710064"
+      }
     }
   ]
 }
