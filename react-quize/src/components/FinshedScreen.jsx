@@ -1,4 +1,7 @@
-function FinshedScreen({ points, maxPossiblePoint, hightscore, dispatch }) {
+import { useQuiz } from "../context/QuizeContext";
+
+function FinshedScreen() {
+  const { points, maxPossiblePoint, hightscore, dispatch } = useQuiz();
   const percentage = (points / maxPossiblePoint) * 100;
   let emoji;
   if (percentage >= 90) emoji = "🥇";
