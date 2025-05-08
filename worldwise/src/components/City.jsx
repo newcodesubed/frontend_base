@@ -21,7 +21,7 @@ function City() {
     function () {
       getCity(id);
     },
-    [id]
+    [id, getCity]
   );
 
   //if created here it would be local state only
