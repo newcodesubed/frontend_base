@@ -1,5 +1,22 @@
+import { useLoaderData } from "react-router-dom";
+import { getMenu } from "../../services/apiRestaurant";
+import MenuItem from "./MenuItem";
+// data fetch at same time as render happens
 function Menu() {
-  return <h1>Menu</h1>;
+  const menu = useLoaderData();
+  console.log(menu);
+  return (
+    <ul>
+      {menu.map((pizza) => (
+        <MenuItem pizza={pizza} key={pizza.id} />
+      ))}
+    </ul>
+  );
+}
+//data fetching i centralized in route it self
+export async function loader() {
+  const menu = await getMenu();
+  return menu;
 }
 
 export default Menu;
