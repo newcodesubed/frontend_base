@@ -43,19 +43,19 @@ function CreateOrder() {
 
   return (
     <div>
-      <h2>Ready to order? Let's go!</h2>
+      <h2 className="my-2">Ready to order? Let's go!</h2>
 
       {/* <Form method="POST" action="/order/new"> */}
       <Form method="POST">
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <input className="input" type="text" name="customer" required />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input className="input" type="tel" name="phone" required />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
@@ -63,12 +63,7 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input
-              className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus:ring focus:ring-yellow-400 md:px-6 md:py-3"
-              type="text"
-              name="address"
-              required
-            />
+            <input className="input" type="text" name="address" required />
           </div>
         </div>
 
