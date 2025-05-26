@@ -13,7 +13,7 @@ function Menu() {
     </ul>
   );
 }
-//data fetching i centralized in route it self
+//data fetching is centralized in route it self
 export async function loader() {
   const menu = await getMenu();
   return menu;
