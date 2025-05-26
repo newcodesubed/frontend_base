@@ -5,14 +5,14 @@ function SearchOrder() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
-  function handlesubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     if (!query) return;
     navigate(`/order/${query}`);
     setQuery("");
   }
   return (
-    <form onSubmit={handlesubmit}>
+    <form onSubmit={handleSubmit}>
       <input
         placeholder="search you order#00000"
         value={query}
