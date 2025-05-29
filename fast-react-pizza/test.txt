@@ -1,0 +1,71 @@
+// store/menuSlice.js
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getMenu } from '../services/apiRestaurant';
+
+export const fetchMenu = createAsyncThunk('menu/fetchMenu', async () => {
+  const menu = await getMenu();
+  return menu;
+});
+
+const menuSlice = createSlice({
+  name: 'menu',
+  initialState: {
+    data: null,
+    status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+    error: null,
+  },
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchMenu.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchMenu.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data = action.payload;
+      })
+      .addCase(fetchMenu.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
+  },
+});
+
+export default menuSlice.reducer;
+// pages/menu.jsx
+import { store } from '../../store/store';
+import { fetchMenu } from '../../store/menuSlice';
+
+export async function loader() {
+  const state = store.getState();
+  const menu = state.menu.data;
+
+  if (!menu) {
+    // Dispatch Redux action if data not available
+    await store.dispatch(fetchMenu());
+  }
+
+  return null; // Return nothing since Redux will handle state
+}
+//menu
+import { useSelector } from 'react-redux';
+import MenuItem from './MenuItem';
+
+function Menu() {
+  const menu = useSelector((state) => state.menu.data);
+  const status = useSelector((state) => state.menu.status);
+  const error = useSelector((state) => state.menu.error);
+
+  if (status === 'loading') return <p>Loading menu...</p>;
+  if (status === 'failed') return <p>Error: {error}</p>;
+
+  return (
+    <ul className="divide-y divide-stone-200">
+      {menu?.map((pizza) => (
+        <MenuItem pizza={pizza} key={pizza.id} />
+      ))}
+    </ul>
+  );
+}
+
+export default Menu;
