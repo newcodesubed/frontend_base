@@ -10,6 +10,7 @@ import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import { createEditCabins } from "../../services/apiCabins";
 import FormRow from "../../ui/FormRow";
+import { useCreateCabin } from "./useCreateCabin";
 
 function CreateCabinForm({ cabinToEdit = {} }) {
   const { id: editId, ...editValues } = cabinToEdit;
@@ -18,18 +19,9 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     defaultValues: isEditSession ? editValues : {},
   });
   const { errors } = formState;
+
+  const { isCreating, createCabin } = useCreateCabin();
   const queryClient = useQueryClient();
-  const { isLoading: isCreating, mutate: createCabin } = useMutation({
-    mutationFn: createEditCabins, // function to call on submit
-    onSuccess: () => {
-      toast.success("Cabin created successfully");
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
-      reset();
-    },
-    onError: (err) => toast.error(err.message),
-  });
   const { isLoading: isEditing, mutate: editCabin } = useMutation({
     mutationFn: ({ newCabinData, id }) => createEditCabins(newCabinData, id), // function to call on submit
     onSuccess: () => {
@@ -48,9 +40,13 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     //check if there is existing image or not CASE1: while creating image is image only CASE2: editing already image exist so String is present in the form
     const image = typeof data.image === "string" ? data.image : data.image[0];
     if (isEditSession)
-      editCabin({ newCabinData: { ...data, image }, id: editId });
+      editCabin(
+        { newCabinData: { ...data, image }, id: editId },
+        { onSuccess: (data) => reset() }
+      );
     //register gareko react form ko data nai ho  cabin ko newCabin ko data
-    else createCabin({ ...data, image: image });
+    else
+      createCabin({ ...data, image: image }, { onSuccess: (data) => reset() });
   }
 
   function onError(errors) {
@@ -86,7 +82,6 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         <Input
           type="number"
           id="regularPrice"
-          disabled={isWorking}
           {...register("regularPrice", {
             required: "This field is required",
             min: {
