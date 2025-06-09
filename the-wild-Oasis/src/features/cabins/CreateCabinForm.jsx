@@ -26,8 +26,9 @@ function CreateCabinForm() {
     onError: (err) => toast.error(err.message),
   });
   function onSubmit(data) {
+    console.log(data);
     //register gareko react form ko data nai ho  cabin ko newCabin ko data
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
   }
 
   function onError(errors) {
@@ -102,7 +103,11 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow label="Cabin photo">
-        <FileInput id="image" accept="image/*" />
+        <FileInput
+          id="image"
+          accept="image/*"
+          {...register("image", { required: "This field is required" })}
+        />
       </FormRow>
 
       <FormRow>
