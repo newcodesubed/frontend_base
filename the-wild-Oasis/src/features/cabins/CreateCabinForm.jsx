@@ -11,6 +11,7 @@ import Textarea from "../../ui/Textarea";
 import { createEditCabins } from "../../services/apiCabins";
 import FormRow from "../../ui/FormRow";
 import { useCreateCabin } from "./useCreateCabin";
+import { useEditiCabin } from "./useEditCabin";
 
 function CreateCabinForm({ cabinToEdit = {} }) {
   const { id: editId, ...editValues } = cabinToEdit;
@@ -21,18 +22,8 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const { errors } = formState;
 
   const { isCreating, createCabin } = useCreateCabin();
-  const queryClient = useQueryClient();
-  const { isLoading: isEditing, mutate: editCabin } = useMutation({
-    mutationFn: ({ newCabinData, id }) => createEditCabins(newCabinData, id), // function to call on submit
-    onSuccess: () => {
-      toast.success("Cabin Successfully Edited");
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
-      reset();
-    },
-    onError: (err) => toast.error(err.message),
-  });
+
+  const { isEditing, editCabin } = useEditiCabin();
 
   const isWorking = isCreating || isEditing;
 
