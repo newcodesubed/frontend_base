@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { faker } from "@faker-js/faker";
-import "./index.css";
+import "./styles.css";
 
 const products = Array.from({ length: 20 }, () => {
   return {
     productName: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
-    price: faker.commerce.price()
+    price: faker.commerce.price(),
   };
 });
 
 const companies = Array.from({ length: 15 }, () => {
   return {
     companyName: faker.company.name(),
-    phrase: faker.company.catchPhrase()
+    phrase: faker.company.catchPhrase(),
   };
 });
 
