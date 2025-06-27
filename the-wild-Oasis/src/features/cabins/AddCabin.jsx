@@ -1,6 +1,7 @@
 // import { useState } from "react";
 import Button from "../../ui/Button";
 import CreateCabinForm from "./CreateCabinForm";
+import CabinTable from "./CabinTable";
 import Modal from "../../ui/Modal";
 
 //create api for the modal
@@ -15,12 +16,12 @@ function AddCabin() {
         <CreateCabinForm />
       </Modal.Window>
 
-      {/* <Modal.Open opens='table'>
+      <Modal.Open opens="table">
         <Button>Show table</Button>
       </Modal.Open>
-      <Modal.Window name='table'  >
-        <CreateCabinForm />
-      </Modal.Window> */}
+      <Modal.Window name="table">
+        <CabinTable />
+      </Modal.Window>
     </Modal>
   );
 }
