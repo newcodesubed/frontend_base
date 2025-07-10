@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { createPortal } from "react-dom";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import styled from "styled-components";
 
@@ -86,7 +87,14 @@ function Toggle({ id }) {
     </StyledToggle>
   );
 }
-function List({ id }) {}
+function List({ id, children }) {
+  const { openId } = useContext(MenuContext);
+  if (openId !== id) return null;
+  return createPortal(
+    <StyledList position={{ x: 20, y: 20 }}>{children}</StyledList>,
+    document.body
+  );
+}
 function Button({ children }) {
   return (
     <li>
@@ -97,7 +105,7 @@ function Button({ children }) {
 
 Menus.Menu = Menu;
 Menus.Toggle = Toggle;
-Menu.List = List;
-Menu.Button = Button;
+Menus.List = List;
+Menus.Button = Button;
 
 export default Menus;
